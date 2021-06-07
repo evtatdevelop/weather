@@ -1,0 +1,30 @@
+.module {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid wheat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cityName {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.weatherList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.weatherList li {
+  padding: 3px;
+  margin: 2px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.weatherList li p:first-child {
+  width: 65%;
+}
