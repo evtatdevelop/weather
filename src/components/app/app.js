@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="appName">Weater</h1>
+      <h1 className="appName">Weather</h1>
       <div className="modules">
         <RandomLoc/>
       </div>

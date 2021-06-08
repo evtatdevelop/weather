@@ -1,8 +1,6 @@
 export default class WeatherService {
 
   constructor() {
-    // this._apiBase = 'http://api.openweathermap.org/data/2.5/weather?';
-    // this._apiKey = '&appid=2a0eda8e7bea2c165ff7d39fceac58ed'
     this._apiKey = 'appid=2a0eda8e7bea2c165ff7d39fceac58ed'
     this._apiBase = `http://api.openweathermap.org/data/2.5/weather?${this._apiKey}&`;
     this.units = 'metric';
@@ -18,15 +16,27 @@ export default class WeatherService {
     return await res.json();
   }
 
-  getWeaterByCityName(cityName) {
-    return this.getWeather(`q=${cityName}&units=${this.units}&lang=ru`);
+  async getWeaterByCityName(cityName) {
+    const res = await this.getWeather(`q=${cityName}&units=${this.units}&lang=${this.lang}`);
+    return this._transforData(res);
   }
 
-  getWeaterByCityId(cityId) {
-    return this.getWeather(`id=${cityId}&units=${this.units}&lang=th`);
+  async getWeaterByCityId(cityId) {
+    const res = await this.getWeather(`id=${cityId}&units=${this.units}&lang=en`);
+    return this._transforData(res);
   }
 
-  getWeaterAroundPoint(latitude, longitude, count) {
-    return this.getWeather(`lat=${latitude}&lon=${longitude}&cnt=${count}&units=${this.units}&lang=th`);
+  async getWeaterAroundPoint(latitude, longitude, count) {
+    const res = await this.getWeather(`lat=${latitude}&lon=${longitude}&cnt=${count}&units=${this.units}&lang=en`);
+    return this._transforData(res);
+  }
+
+  _transforData(data) {
+    return {
+      city: data.name,
+      time: data.timezone,
+      temp: data.main.temp,
+      desc: data.weather[0].description,
+    }
   }
 }

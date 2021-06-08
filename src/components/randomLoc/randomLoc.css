@@ -1,5 +1,5 @@
 .module {
-  width: 200px;
+  width: 250px;
   padding: 10px;
   border: 1px solid wheat;
   display: flex;
@@ -26,5 +26,5 @@
   justify-content: space-between;
 }
 .weatherList li p:first-child {
-  width: 65%;
+  width: 50%;
 }
