@@ -11,6 +11,7 @@ export default class RandomLoc extends Component {
     
     this.citiesList = ['Bangkok', 'Kemerovo', 'Singapore', 'Hong Kong', 'Chiang Mai', 'Pattaya', 'Moscow'];
     this.updateWeather();
+    this.autoUpdate();
   }
   
   wservice = new WeatherService();
@@ -38,6 +39,10 @@ export default class RandomLoc extends Component {
       .catch(this.onError);
   }
 
+  autoUpdate = () => {
+    setInterval(() => this.updateWeather(), 60000);
+  }
+
   render() {
     const { data, loading, error } = this.state;  
 
@@ -62,7 +67,11 @@ const View = ({data}) => {
     const shift = Time.getTimezoneOffset()*60*1000;
     const uts = ts + shift;
     const Local = new Date(uts + utsShift * 1000);
-    return `${Local.getHours()}:${Local.getMinutes()}`;
+    const hour = Local.getHours();
+    const hh = hour < 10 ? `0${hour}` : hour;
+    const min = Local.getMinutes();
+    const mm = min < 10 ? `0${min}` : min;
+    return `${hh}:${mm}`;
   }  
 
   return(
