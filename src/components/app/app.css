@@ -15,3 +15,18 @@
   display: flex;
   justify-content: space-around;
 }
+
+.closeButton {
+  width: 250px;
+  padding: 5px;
+  background-color: transparent;
+  color: wheat;
+  font-weight: 700;
+  border: 1px solid wheat;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: all .3s;
+}
+.closeButton:hover{
+  background-color: #25252A;
+}

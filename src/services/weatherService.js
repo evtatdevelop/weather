@@ -37,6 +37,7 @@ export default class WeatherService {
       time: data.timezone,
       temp: data.main.temp,
       desc: data.weather[0].description,
+      country: data.sys.country,
     }
   }
 }
