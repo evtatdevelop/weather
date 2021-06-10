@@ -30,6 +30,7 @@ export default class CountryDetails extends Component {
     country['langs'] = country.languages.reduce((str, item) => str==='' ? this.locationService.getLanguageByCode(item) : str + ', ' + this.locationService.getLanguageByCode(item), '')
     // console.log(country)
     this.setState({country: country})
+    // this.foo.bar = 0;
   }
 
   render() {
@@ -40,12 +41,12 @@ export default class CountryDetails extends Component {
 
     return (
       <ul className='detailList'>
-        <li><span>name</span> {name} ({native} |{emoji})</li>
-        <li><span>capital</span> {capital}</li>
-        <li><span>continent</span> {continent}</li>
-        <li><span>currency</span> {currency}</li>
-        <li><span>languages</span> {langs}</li>
-        <li><span>phone</span> {phone}</li>
+        <li className='name'>{name} ({native} |{emoji})</li>
+        <li><span>Capital</span> {capital}</li>
+        <li><span>Continent</span> {continent}</li>
+        <li><span>Currency</span> {currency}</li>
+        <li><span>Languages</span> {langs}</li>
+        <li><span>Phone code</span> {phone}</li>
       </ul>
     )
   }
