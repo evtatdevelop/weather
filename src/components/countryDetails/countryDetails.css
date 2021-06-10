@@ -1,0 +1,15 @@
+.detailList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.detailList li {
+  padding: 1px;
+  /* margin: 2px; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.detailList li p:first-child {
+  width: 50%;
+}

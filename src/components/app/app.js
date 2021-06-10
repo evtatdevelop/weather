@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 
 import './app.css';
 import RandomLoc from '../randomLoc';
-
-
+import CountryList from '../countryList';
+import CountryDetails from '../countryDetails';
 
 export default class App extends Component {
 
   state = {
     widget: true,
     btnLabel: 'Close',
+    selectedCountry: null,
   }
 
   toggleWidget = (widget) => {
@@ -19,8 +20,13 @@ export default class App extends Component {
     })
   }
 
+  onCountrySelected = code => {
+    this.setState({selectedCountry: code})
+  };
+
   render() {
-    const {widget, btnLabel} = this.state;
+    // console.log(this.state.selectedCountry);
+    const {widget, btnLabel, selectedCountry} = this.state;
     const widgetComponent = widget ? <RandomLoc/> : null;
     return (
       <div className="app">
@@ -29,6 +35,8 @@ export default class App extends Component {
           {widgetComponent}
         </div>
         <button className='closeButton' onClick={() => this.toggleWidget(widget)}>{btnLabel} Widget</button>
+        <CountryDetails countryCode={selectedCountry}/>
+        <CountryList className='countryList' onCountrySelected={this.onCountrySelected}/>
       </div>
     );
   }

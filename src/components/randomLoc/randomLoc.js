@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import './randomLoc.css';
 import WeatherService from '../../services/weatherService';
-import CitiesService from '../../services/cityesService';
+import LocationService from '../../services/locationService';
 import Spiner from '../spiner';
 import Error from '../error';
 export default class RandomLoc extends Component {
@@ -13,7 +13,7 @@ export default class RandomLoc extends Component {
   }
   
   wservice = new WeatherService();
-  citiesService = new CitiesService();
+  locationService = new LocationService();
 
   state = {
     data: {},
@@ -24,6 +24,7 @@ export default class RandomLoc extends Component {
   onDataLoad = (data) => this.setState({
     data,
     loading: false,
+    error: false,
   });
 
   onError = (err) => {
@@ -31,11 +32,10 @@ export default class RandomLoc extends Component {
       error: true,
       loading: false,
     });
-    this.updateWeather();
 };
 
   updateWeather = () => {
-    const name = this.citiesService.getRandomCity();
+    const name = this.locationService.getRandomCity();
     // const name = this.citiesList[Math.floor(Math.random() * this.citiesList.length)];
     this.wservice.getWeaterByCityName(name)
       .then(this.onDataLoad)
@@ -44,7 +44,7 @@ export default class RandomLoc extends Component {
 
   componentDidMount() {
     this.updateWeather();
-    this.timerId = setInterval(this.updateWeather, 15000);
+    this.timerId = setInterval(this.updateWeather, 7000);
   }
   componentWillUnmount() {
     clearInterval(this.timerId);
@@ -68,7 +68,7 @@ export default class RandomLoc extends Component {
 const View = ({data}) => {
   const {city, time, temp, desc, country} = data;
 
-  const citiesService = new CitiesService();
+  const locationService = new LocationService();
   
   const getLocalTimebyUtsShift = utsShift => {
     const Time = new Date()
@@ -85,7 +85,7 @@ const View = ({data}) => {
 
   return(
     <>
-      <h2 className="cityName">{city} ({citiesService.getCountryByCode(country)})</h2>
+      <h2 className="cityName">{city} ({locationService.getCountryNameByCode(country)})</h2>
       <ul className="weatherList">
         <li><p>Local time</p><p>{getLocalTimebyUtsShift(time)}</p></li>
         <li><p>Temperature</p><p>{Math.round(temp)}	&deg;C</p></li>
