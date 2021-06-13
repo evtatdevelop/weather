@@ -48,6 +48,12 @@ export default class App extends Component {
         {/* <CountryDetails countryCode={selectedCountry}/>
         <CountryList className='countryList' onCountrySelected={this.onCountrySelected}/> */}
         <CountryPage/>
+
+        {/* <CountryDetails countryCode={selectedCountry}/>
+        <CountryList className='countryList' onCountrySelected={this.onCountrySelected}/>
+
+        <CountryDetails countryCode={selectedCountry}/>
+        <CountryList className='countryList' onCountrySelected={this.onCountrySelected}/> */}
       </div>
     );
   }

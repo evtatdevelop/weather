@@ -22,8 +22,12 @@ export default class CitiesService {
   //   });
   // }
 
-  getAllCiteis() {
+  getAllCitiуs() {
     return cities;
+  }
+
+  getCitiesByCountryCode(countryCode) {
+    return cities.filter(city => city.country === countryCode );
   }
   
   getRandomCity() {
@@ -49,8 +53,6 @@ export default class CitiesService {
   getLanguageByCode(code) {
     if(!countries.languages[code]) return;
     return countries.languages[code].name;
-    // console.log(code)
-    // console.log(countries.languages)
   }
 
 }
