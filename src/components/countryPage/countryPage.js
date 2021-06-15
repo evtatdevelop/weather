@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-import CountryList from '../countryList';
+import ItemsList from '../itemsList';
 import CountryDetails from '../countryDetails';
 import Error from '../error';
 import './countryPage.css';
 
+import LocationService from '../../services/locationService';
+
 export default class CountryPage extends Component {
+
+  locationService = new LocationService();
 
   state = {
     selectedCountry: 'TH',
@@ -25,7 +29,11 @@ export default class CountryPage extends Component {
     return (
       <>
         <CountryDetails countryCode={selectedCountry}/>
-        <CountryList className='countryList' onCountrySelected={this.onCountrySelected}/>
+        <ItemsList 
+          className='countryList'
+          onCountrySelected={this.onCountrySelected}
+          getData = {this.locationService.getAllCountries}  
+        />
       </>
     )
   }

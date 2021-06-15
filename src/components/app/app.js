@@ -7,12 +7,18 @@ import RandomLoc from '../randomLoc';
 import CountryPage from '../countryPage'
 import Error from '../error';
 
+import ItemsList from '../itemsList';
+import CountryDetails from '../countryDetails';
+import LocationService from '../../services/locationService';
+
 export default class App extends Component {
+
+  locationService = new LocationService();
 
   state = {
     widget: true,
     btnLabel: 'Close',
-    // selectedCountry: 'TH',
+    selectedCountry: 'TZ',
     error: false,
   }
 
@@ -28,9 +34,14 @@ export default class App extends Component {
     })
   }
 
-  // onCountrySelected = code => {
-  //   this.setState({selectedCountry: code})
-  // };
+
+
+  onCountrySelected = code => {
+    this.setState({selectedCountry: code})
+  };
+
+
+
 
   render() {
     // console.log(this.state.selectedCountry);
@@ -47,13 +58,17 @@ export default class App extends Component {
         <button className='closeButton' onClick={() => this.toggleWidget(widget)}>{btnLabel} Widget</button>
         {/* <CountryDetails countryCode={selectedCountry}/>
         <CountryList className='countryList' onCountrySelected={this.onCountrySelected}/> */}
+        
         <CountryPage/>
 
-        {/* <CountryDetails countryCode={selectedCountry}/>
-        <CountryList className='countryList' onCountrySelected={this.onCountrySelected}/>
+        {/* <CountryDetails countryCode={selectedCountry}/> */}
+        <ItemsList 
+          className='countryList'
+          // onCountrySelected={this.onCountrySelected}
+          getData = {() => this.locationService.getCitiesByCountryCode(this.state.selectedCountry)}
+        />
 
-        <CountryDetails countryCode={selectedCountry}/>
-        <CountryList className='countryList' onCountrySelected={this.onCountrySelected}/> */}
+
       </div>
     );
   }

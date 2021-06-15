@@ -22,35 +22,32 @@ export default class CitiesService {
   //   });
   // }
 
-  getAllCitiуs() {
-    return cities;
-  }
+  getAllCitiуs = () => cities;
 
-  getCitiesByCountryCode(countryCode) {
-    return cities.filter(city => city.country === countryCode );
+  getCitiesByCountryCode = countryCode => {
+    return cities.filter(city => city.country === countryCode).reduce((res,item) => {
+      const code = Math.random() * item.lat * item.lng * 1.e15;
+      res.push({'code': code, ...item});
+      return res;
+    }, [])
+  };
+
+  getRandomCity = () => cities[Math.floor(Math.random() * cities.length)].name;
+  
+  getAllCountries = () => {
+    return Object.entries(countries.countries).reduce((res, item) => {
+      res.push({'code': item[0], ...item[1]});
+      return res;
+    }, [])
   }
   
-  getRandomCity() {
-    return cities[Math.floor(Math.random() * cities.length)].name;
-  }
-
-  getAllCountries() {
-    return Object.entries(countries.countries);
-  }
-
-  getCountryByCode(code) {
-    return countries.countries[code];
-  }
-
-  getCountryNameByCode(code) {
-    return countries.countries[code].name;
-  }
-
-  getContinentNameByCode(code) {
-    return countries.continents[code];
-  }
-
-  getLanguageByCode(code) {
+  getCountryByCode = code => countries.countries[code];
+  
+  getCountryNameByCode = code => countries.countries[code].name;
+  
+  getContinentNameByCode = code => countries.continents[code];
+  
+  getLanguageByCode = code => {
     if(!countries.languages[code]) return;
     return countries.languages[code].name;
   }
