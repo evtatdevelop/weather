@@ -42,6 +42,7 @@ export default class CityPage extends Component {
       {/* <Field field = 'name' label = 'Name'/> */}
       <Field field = 'lat' label = 'Latitude'/>
       <Field field = 'lng' label = 'Longitude'/>
+      <Field field = 'gooLink' label = 'Map'/>
     </ItemDetails> 
     );
 

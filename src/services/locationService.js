@@ -32,7 +32,12 @@ export default class CitiesService {
     }, [])
   };
 
-  getCityByName = name => cities.filter(item => item.name === name)[0];
+  getCityByName = name => {
+    let city = cities.filter(item => item.name === name)[0];
+    if (city) city = {...city, 'gooLink': `http://www.google.com/maps/place/${city.lat},${city.lng}`};
+    // console.log(city);
+    return city;
+  };
 
   getRandomCity = () => cities[Math.floor(Math.random() * cities.length)].name;
   

@@ -4,9 +4,11 @@ import './itemDetails.css';
 // import LocationService from '../../services/locationService';
 
 const Field = ({data, field, label}) => {
-  return (
-    <li><span>{label}</span>{data[field]}</li>
-  )
+  if (field === 'gooLink')
+    return (  <li><p></p><a href={data[field]} target='_blank' rel="noreferrer">Goole Maps</a></li> )
+  else  
+    return (  <li><p>{label}</p>{data[field]}</li> )
+
 }
 export {Field}
 
