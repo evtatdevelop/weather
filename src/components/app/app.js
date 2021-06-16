@@ -18,7 +18,7 @@ export default class App extends Component {
   state = {
     widget: true,
     btnLabel: 'Close',
-    // selectedCountry: 'TH',
+    selectedCountry: 'RU',
     // selectedCity: 'Bangkok',
     error: false,
   }
@@ -35,9 +35,13 @@ export default class App extends Component {
     })
   }
 
+  onContrySelected = code => {
+    this.setState({selectedCountry: code})
+  };
+
   render() {
     // const {widget, btnLabel, selectedCountry, selectedCity, error} = this.state;
-    const {widget, btnLabel, error} = this.state;
+    const {widget, btnLabel, error, selectedCountry} = this.state;
     const widgetComponent = widget ? <RandomLoc/> : null;
     if (error) return <Error/>
     
@@ -49,8 +53,13 @@ export default class App extends Component {
         </div>
         <button className = 'closeButton' onClick = {() => this.toggleWidget(widget)}>{btnLabel} Widget</button>
        
-        <CountryPage/>
-        <CityPage/>
+        <CountryPage
+          selectedCountry = {selectedCountry}
+          onContrySelected = {this.onContrySelected}
+        />
+        <CityPage 
+          selectedCountry = {selectedCountry}
+        />
       </div>
     );
   }

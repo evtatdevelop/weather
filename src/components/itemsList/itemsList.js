@@ -10,10 +10,21 @@ export default class ItemsList extends Component {
   }
 
   componentDidMount() {
+    this.updateItemDetails();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.itemCode !== this.props.itemCode) {
+      this.updateItemDetails();
+    }
+  }
+  
+  updateItemDetails() {
     const {getData} = this.props;
     const items = getData();
     this.setState({items})
   }
+
 
   renderitemsList(data) {
     return data.map(item => {

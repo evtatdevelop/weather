@@ -26,7 +26,9 @@ export default class CountryPage extends Component {
   };
 
   render() {
-    const {selectedItem, error} = this.state;
+    // const {selectedItem, error} = this.state;
+    const {error} = this.state;
+    const selectedItem = this.props.selectedCountry;
     if (error) return <Error/>
     
     const countryDetails = (
@@ -46,7 +48,8 @@ export default class CountryPage extends Component {
 
     const itemsList = (
       <ItemsList 
-        onItemSelected = {this.onItemSelected}
+        // onItemSelected = {this.onItemSelected}
+        onItemSelected = {this.props.onContrySelected}
         getData = {this.locationService.getAllCountries}
         renderItem = {({name, emoji}) => (<><span>{name}</span><span>{emoji}</span></>)}
       />
