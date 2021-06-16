@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 
-import './countryDetails.css';
+import './itemDetails.css';
 // import LocationService from '../../services/locationService';
 
-const Fieald = ({data, field, label}) => {
+const Field = ({data, field, label}) => {
   return (
     <li><span>{label}</span>{data[field]}</li>
   )
 }
-export {Fieald}
+export {Field}
 
-export default class CountryDetails extends Component {
+export default class ItemDetails extends Component {
   
   // locationService = new LocationService();
 
@@ -47,9 +47,9 @@ export default class CountryDetails extends Component {
     const {name} = this.state.data;
     const {data} = this.state;
     return (
-      <ul className='detailList'>
+      <ul className = 'detailList'>
         {/* <li className='name'>{name} ({native} |{emoji})</li> */}
-        <li className='name'>{name}</li>
+        <li className = 'name'>{name}</li>
         {React.Children.map(this.props.children, (child => {
           return React.cloneElement(child, {data})
         }))}

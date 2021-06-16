@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ItemsList from '../itemsList';
-import CountryDetails, {Fieald} from '../countryDetails';
+import ItemDetails, {Field} from '../itemDetails';
 import RenderBlock from '../renderBlock';
 import Error from '../error';
 
@@ -32,21 +32,21 @@ export default class CityPage extends Component {
     if (error) return <Error/>
     
     const countryDetails = (
-      <CountryDetails 
-      itemCode={selectedItem}
+      <ItemDetails 
+      itemCode = {selectedItem}
       getData = {() => this.locationService.getCityByName(selectedItem)}
     >
-      <Fieald field = 'country' label = 'Country'/>
-      <Fieald field = 'name' label = 'Name'/>
-      <Fieald field = 'lat' label = 'Latitude'/>
-      <Fieald field = 'lng' label = 'Longitude'/>
-    </CountryDetails> 
+      <Field field = 'country' label = 'Country'/>
+      <Field field = 'name' label = 'Name'/>
+      <Field field = 'lat' label = 'Latitude'/>
+      <Field field = 'lng' label = 'Longitude'/>
+    </ItemDetails> 
     );
 
     const itemsList = (
       <ItemsList 
         className='countryList'
-        onItemSelected={this.onItemSelected}
+        onItemSelected = {this.onItemSelected}
         getData = {() => this.locationService.getCitiesByCountryCode(selectedCountry)}
         renderItem = {(item) => `${item.name}`}
       />

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ItemsList from '../itemsList';
-import CountryDetails, {Fieald} from '../countryDetails';
+import ItemDetails, {Field} from '../itemDetails';
 import RenderBlock from '../renderBlock';
 import Error from '../error';
 
@@ -30,23 +30,23 @@ export default class CountryPage extends Component {
     if (error) return <Error/>
     
     const countryDetails = (
-      <CountryDetails 
-        itemCode={selectedItem}
+      <ItemDetails 
+        itemCode = {selectedItem}
         getData = {() => this.locationService.getCountryByCode(selectedItem)}
       >
-        <Fieald field = 'native' label = 'Native'/>
-        <Fieald field = 'emoji' label = 'Flag'/>
-        <Fieald field = 'capital' label = 'Capital'/>
-        <Fieald field = 'continent' label = 'Continent'/>
-        <Fieald field = 'currency' label = 'Currency'/>
-        <Fieald field = 'langs' label = 'Languages'/>
-        <Fieald field = 'phone' label = 'Phone code'/>
-      </CountryDetails>  
+        <Field field = 'native' label = 'Native'/>
+        <Field field = 'emoji' label = 'Flag'/>
+        <Field field = 'capital' label = 'Capital'/>
+        <Field field = 'continent' label = 'Continent'/>
+        <Field field = 'currency' label = 'Currency'/>
+        <Field field = 'langs' label = 'Languages'/>
+        <Field field = 'phone' label = 'Phone code'/>
+      </ItemDetails>  
     );
 
     const itemsList = (
       <ItemsList 
-        onItemSelected={this.onItemSelected}
+        onItemSelected = {this.onItemSelected}
         getData = {this.locationService.getAllCountries}
         renderItem = {({name, emoji}) => (<><span>{name}</span><span>{emoji}</span></>)}
       />

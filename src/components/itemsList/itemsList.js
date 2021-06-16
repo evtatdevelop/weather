@@ -21,9 +21,9 @@ export default class ItemsList extends Component {
       const label = this.props.renderItem(item);
       return (
         <li 
-          key={code}
-          className='itemListItem'
-          onClick={() => this.props.onItemSelected(code)}
+          key = {code}
+          className = 'itemListItem'
+          onClick = {() => this.props.onItemSelected(code)}
         >
           {label}
         </li>
@@ -37,7 +37,7 @@ export default class ItemsList extends Component {
     const itemsList = this.renderitemsList(items);
 
     return (
-      <ul className='itemList'>
+      <ul className = 'itemList'>
         {itemsList}
       </ul>
     )

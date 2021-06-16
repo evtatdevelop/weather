@@ -18,8 +18,8 @@ export default class App extends Component {
   state = {
     widget: true,
     btnLabel: 'Close',
-    selectedCountry: 'TH',
-    selectedCity: 'Bangkok',
+    // selectedCountry: 'TH',
+    // selectedCity: 'Bangkok',
     error: false,
   }
 
@@ -42,12 +42,12 @@ export default class App extends Component {
     if (error) return <Error/>
     
     return (
-      <div className="app">
-        <h1 className="appName">Weather</h1>
-        <div className="modules">
+      <div className = "app">
+        <h1 className = "appName">Weather</h1>
+        <div className = "modules">
           {widgetComponent}
         </div>
-        <button className='closeButton' onClick={() => this.toggleWidget(widget)}>{btnLabel} Widget</button>
+        <button className = 'closeButton' onClick = {() => this.toggleWidget(widget)}>{btnLabel} Widget</button>
        
         <CountryPage/>
         <CityPage/>
