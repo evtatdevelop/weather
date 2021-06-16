@@ -16,4 +16,6 @@
   margin: 3px;
   background-color: #25252A;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }

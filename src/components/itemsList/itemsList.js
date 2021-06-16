@@ -17,13 +17,18 @@ export default class ItemsList extends Component {
 
   renderitemsList(data) {
     return data.map(item => {
-      const {code, name} = item;
+      const {code} = item;
+      const label = this.props.renderItem(item);
+      // console.log(item)
       return (
         <li 
           key={code}
           className='itemListItem'
-          onClick={() => this.props.onCountrySelected(code)}
-        >{name}</li>)
+          onClick={() => this.props.onItemSelected(code)}
+        >
+          {label}
+        </li>
+      )
     })
   }
 

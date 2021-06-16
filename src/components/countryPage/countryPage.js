@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import ItemsList from '../itemsList';
-import CountryDetails from '../countryDetails';
+import CountryDetails, {Fieald} from '../countryDetails';
+import RenderBlock from '../renderBlock';
 import Error from '../error';
+
 import './countryPage.css';
 
 import LocationService from '../../services/locationService';
@@ -11,7 +13,7 @@ export default class CountryPage extends Component {
   locationService = new LocationService();
 
   state = {
-    selectedCountry: 'TH',
+    selectedItem: 'TH',
     error: false,
   }
 
@@ -19,22 +21,34 @@ export default class CountryPage extends Component {
     this.setState({error: true})
   }
 
-  onCountrySelected = code => {
-    this.setState({selectedCountry: code})
+  onItemSelected = code => {
+    this.setState({selectedItem: code})
   };
 
   render() {
-    const {selectedCountry, error} = this.state;
+    const {selectedItem, error} = this.state;
     if (error) return <Error/>
+    
+    const countryDetails = (
+      <CountryDetails countryCode={selectedItem}>
+        <Fieald field = 'capital' label = 'Capital'/>
+        <Fieald field = 'continent' label = 'Continent'/>
+        <Fieald field = 'currency' label = 'Currency'/>
+        <Fieald field = 'langs' label = 'Languages'/>
+        <Fieald field = 'phone' label = 'Phone code'/>
+      </CountryDetails>  
+    );
+
+    const itemsList = (
+      <ItemsList 
+        onItemSelected={this.onItemSelected}
+        getData = {this.locationService.getAllCountries}
+        renderItem = {({name, emoji}) => (<><span>{name}</span><span>{emoji}</span></>)}
+      />
+    );
+
     return (
-      <>
-        <CountryDetails countryCode={selectedCountry}/>
-        <ItemsList 
-          className='countryList'
-          onCountrySelected={this.onCountrySelected}
-          getData = {this.locationService.getAllCountries}  
-        />
-      </>
+      <RenderBlock top = {countryDetails} bottom = {itemsList}/>  
     )
   }
 }
