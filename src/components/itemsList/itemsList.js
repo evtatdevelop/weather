@@ -19,7 +19,6 @@ export default class ItemsList extends Component {
     return data.map(item => {
       const {code} = item;
       const label = this.props.renderItem(item);
-      // console.log(item)
       return (
         <li 
           key={code}

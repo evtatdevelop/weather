@@ -30,7 +30,12 @@ export default class CountryPage extends Component {
     if (error) return <Error/>
     
     const countryDetails = (
-      <CountryDetails countryCode={selectedItem}>
+      <CountryDetails 
+        itemCode={selectedItem}
+        getData = {() => this.locationService.getCountryByCode(selectedItem)}
+      >
+        <Fieald field = 'native' label = 'Native'/>
+        <Fieald field = 'emoji' label = 'Flag'/>
         <Fieald field = 'capital' label = 'Capital'/>
         <Fieald field = 'continent' label = 'Continent'/>
         <Fieald field = 'currency' label = 'Currency'/>

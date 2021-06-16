@@ -26,11 +26,13 @@ export default class CitiesService {
 
   getCitiesByCountryCode = countryCode => {
     return cities.filter(city => city.country === countryCode).reduce((res,item) => {
-      const code = Math.random() * item.lat * item.lng * 1.e15;
+      const code = item.name.replace(/ /g,"_") + `-${Math.random()}`;
       res.push({'code': code, ...item});
       return res;
     }, [])
   };
+
+  getCityByName = name => cities.filter(item => item.name === name)[0];
 
   getRandomCity = () => cities[Math.floor(Math.random() * cities.length)].name;
   
@@ -41,7 +43,12 @@ export default class CitiesService {
     }, [])
   }
   
-  getCountryByCode = code => countries.countries[code];
+  getCountryByCode = code => {
+    const country = countries.countries[code]
+    country.continent = this.getContinentNameByCode(country.continent)
+    country['langs'] = country.languages.reduce((str, item) => str==='' ? this.getLanguageByCode(item) : str + ', ' + this.getLanguageByCode(item), '');
+    return country;
+  };
   
   getCountryNameByCode = code => countries.countries[code].name;
   

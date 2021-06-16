@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 import './app.css';
 import RandomLoc from '../randomLoc';
 import CountryPage from '../countryPage'
+import CityPage from '../cityPage/';
 import Error from '../error';
-import ItemsList from '../itemsList';
-
-import CountryDetails from '../countryDetails';
 import LocationService from '../../services/locationService';
+
+
+// import ItemsList from '../itemsList';
+// import CountryDetails, {Fieald} from '../countryDetails';
 
 export default class App extends Component {
 
@@ -16,7 +18,8 @@ export default class App extends Component {
   state = {
     widget: true,
     btnLabel: 'Close',
-    // selectedCountry: 'TH',
+    selectedCountry: 'TH',
+    selectedCity: 'Bangkok',
     error: false,
   }
 
@@ -32,17 +35,9 @@ export default class App extends Component {
     })
   }
 
-
-
-  // onCountrySelected = code => {
-  //   this.setState({selectedCountry: code})
-  // };
-
-
-
-
   render() {
-    const {widget, btnLabel, selectedCountry, error} = this.state;
+    // const {widget, btnLabel, selectedCountry, selectedCity, error} = this.state;
+    const {widget, btnLabel, error} = this.state;
     const widgetComponent = widget ? <RandomLoc/> : null;
     if (error) return <Error/>
     
@@ -55,15 +50,7 @@ export default class App extends Component {
         <button className='closeButton' onClick={() => this.toggleWidget(widget)}>{btnLabel} Widget</button>
        
         <CountryPage/>
-
-        <CountryDetails countryCode={selectedCountry}/>
-        <ItemsList 
-          className='countryList'
-          onItemSelected={this.onItemSelected}
-          getData = {() => this.locationService.getCitiesByCountryCode('TH')}
-          renderItem = {(item) => `${item.name}`}
-        />
-
+        <CityPage/>
       </div>
     );
   }
