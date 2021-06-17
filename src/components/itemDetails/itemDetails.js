@@ -5,7 +5,7 @@ import './itemDetails.css';
 
 const Field = ({data, field, label}) => {
   if (field === 'gooLink')
-    return (  <li><p></p><a href={data[field]} target='_blank' rel="noreferrer">Goole Maps</a></li> )
+    return (  <li><p></p><a href={data[field]} target='_blank' rel="noreferrer">Google Maps</a></li> )
   else  
     return (  <li><p>{label}</p>{data[field]}</li> )
 

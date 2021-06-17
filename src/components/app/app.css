@@ -37,3 +37,21 @@
 .countryList {
   margin-top: 10px;
 }
+
+nav {
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+}
+.navigation {
+  display: flex;
+  margin-left: auto;
+}
+
+.navigation > li {
+  margin-left: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+}

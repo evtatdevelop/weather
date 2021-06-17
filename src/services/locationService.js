@@ -29,7 +29,7 @@ export default class CitiesService {
       const code = item.name.replace(/ /g,"_") + `-${Math.random()}`;
       res.push({'code': code, ...item});
       return res;
-    }, [])
+    }, []).sort((a, b) => ('' + a.name).localeCompare(b.name))
   };
 
   getCityByName = name => {
@@ -45,7 +45,7 @@ export default class CitiesService {
     return Object.entries(countries.countries).reduce((res, item) => {
       res.push({'code': item[0], ...item[1]});
       return res;
-    }, [])
+    }, []).sort((a, b) => ('' + a.name).localeCompare(b.name))
   }
   
   getCountryByCode = code => {

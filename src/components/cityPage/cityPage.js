@@ -29,8 +29,11 @@ export default class CityPage extends Component {
 
   render() {
     // const {selectedCountry, selectedItem, error} = this.state;
-    const {selectedItem, error} = this.state;
+    // const {selectedItem, error} = this.state;
+    const {error} = this.state;
     const {selectedCountry} = this.props;
+    const selectedItem = this.props.selectedCity;
+
     if (error) return <Error/>
     
     const countryDetails = (
@@ -38,7 +41,7 @@ export default class CityPage extends Component {
       itemCode = {selectedItem}
       getData = {() => this.locationService.getCityByName(selectedItem)}
     >
-      {/* <Field field = 'country' label = 'Country'/> */}
+      <Field field = 'country' label = 'Country'/>
       {/* <Field field = 'name' label = 'Name'/> */}
       <Field field = 'lat' label = 'Latitude'/>
       <Field field = 'lng' label = 'Longitude'/>
@@ -50,7 +53,8 @@ export default class CityPage extends Component {
       <ItemsList
         itemCode = {selectedCountry}
         className='countryList'
-        onItemSelected = {this.onItemSelected}
+        // onItemSelected = {this.onItemSelected}
+        onItemSelected = {this.props.onCitySelected}
         getData = {() => this.locationService.getCitiesByCountryCode(selectedCountry)}
         renderItem = {(item) => `${item.name}`}
       />

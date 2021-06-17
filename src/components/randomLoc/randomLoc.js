@@ -19,8 +19,15 @@ export default class RandomLoc extends Component {
     data: {},
     loading: true,
     error: false,
+    city: null,
   }
   
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedCity !== this.props.selectedCity) {
+      this.updateWeather();
+    }
+  }
+
   onDataLoad = (data) => this.setState({
     data,
     loading: false,
@@ -30,13 +37,15 @@ export default class RandomLoc extends Component {
   onError = (err) => {
     this.setState({
       error: true,
-      loading: false,
+      loading: false
     });
 };
 
   updateWeather = () => {
-    const name = this.locationService.getRandomCity();
-    // const name = this.citiesList[Math.floor(Math.random() * this.citiesList.length)];
+    // const name = this.locationService.getRandomCity();
+
+    const name = (!this.props.selectedCity) ? this.locationService.getRandomCity() : this.props.selectedCity;
+    
     this.wservice.getWeaterByCityName(name)
       .then(this.onDataLoad)
       .catch(this.onError);
