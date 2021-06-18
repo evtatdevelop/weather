@@ -7,10 +7,13 @@ import Error from '../error';
 import './countryPage.css';
 
 import LocationService from '../../services/locationService';
+import CurrencyService from '../../services/currencyService';
+
 
 export default class CountryPage extends Component {
 
   locationService = new LocationService();
+  currencyService = new CurrencyService();
 
   state = {
     selectedItem: 'TH',
@@ -26,6 +29,12 @@ export default class CountryPage extends Component {
   };
 
   render() {
+
+    // console.log(this.currencyService.getAllCurrency())
+    this.currencyService.getCurrencyByCode('THB')
+    .then(data => console.log(data));
+    // .then (item => console.log(item));
+
     // const {selectedItem, error} = this.state;
     const {error} = this.state;
     const selectedItem = this.props.selectedCountry;
