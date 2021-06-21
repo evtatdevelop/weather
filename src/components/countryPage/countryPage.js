@@ -31,8 +31,10 @@ export default class CountryPage extends Component {
   render() {
 
     // console.log(this.currencyService.getAllCurrency())
-    this.currencyService.getCurrencyByCode('THB')
-    .then(data => console.log(data));
+    
+    // this.currencyService.getCurrencyByCode('THB')
+    // .then(data => console.log(data));
+
     // .then (item => console.log(item));
 
     // const {selectedItem, error} = this.state;

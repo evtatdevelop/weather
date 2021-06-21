@@ -42,15 +42,31 @@ export default class ItemsList extends Component {
     })
   }
 
+
+
+  onUpdateSearch = e => {
+    const term = e.target.value;
+    const items = this.state.items.filter(item => item.name.indexOf(term) > -1)
+    // console.log(visible)
+    this.setState({items})
+  }
+
   render() {
     const {items} = this.state;
     if (!items) return <Spiner/>
     const itemsList = this.renderitemsList(items);
 
     return (
-      <ul className = 'itemList'>
-        {itemsList}
-      </ul>
+      <>
+        <input 
+          type='text'
+          placeholder = "Search"
+          onChange = {this.onUpdateSearch}
+        />
+        <ul className = 'itemList'>
+          {itemsList}
+        </ul>
+      </>  
     )
   }
 }
