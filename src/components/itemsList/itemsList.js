@@ -6,7 +6,8 @@ import Spiner from '../spiner';
 export default class ItemsList extends Component {
 
   state = {
-    items: null
+    items: null,
+    term: null,
   }
 
   componentDidMount() {
@@ -46,20 +47,28 @@ export default class ItemsList extends Component {
 
   onUpdateSearch = e => {
     const term = e.target.value;
-    const items = this.state.items.filter(item => item.name.indexOf(term) > -1)
-    // console.log(visible)
-    this.setState({items})
+    this.setState({term})
+  }
+
+  filterItems(items){
+    const {term} = this.state;
+    return (term) 
+      ? items.filter(item => item.name.indexOf(term) > -1)
+      : items;
   }
 
   render() {
     const {items} = this.state;
     if (!items) return <Spiner/>
-    const itemsList = this.renderitemsList(items);
+    const visibleItems = this.filterItems(items)
+    const itemsList = this.renderitemsList(visibleItems);
+    // const itemsList = this.renderitemsList(items);
 
     return (
       <>
-        <input 
-          type='text'
+        <input
+          className = 'search' 
+          type = 'text'
           placeholder = "Search"
           onChange = {this.onUpdateSearch}
         />
